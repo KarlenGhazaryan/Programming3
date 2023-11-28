@@ -143,3 +143,5 @@ function draw() {
         }
     }
 }
+
+console.log(grassArr)
