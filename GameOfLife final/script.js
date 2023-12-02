@@ -128,13 +128,15 @@ function draw() {
     for (let i in predatorArr) {
         predatorArr[i].eat()
     }
+
     for (let i in waterArr) {
         waterArr[i].eat()
 
         if(grassArr.length == 0){
-           waterArr[i].grassBreeder()
+           waterArr[i].grassBreeder();
         }
     }
+    
     for (let i in monsterArr){
         monsterArr[i].eat();
 
