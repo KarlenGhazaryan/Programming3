@@ -1,20 +1,20 @@
-class LivingCreature {
-    constructor(x,y){
+module.exports = class LivingCreature {
+    constructor(x, y) {
         this.x = x;
         this.y = y;
         this.multiply = 0;
         this.directions = [
             [this.x - 1, this.y - 1],
-            [this.x , this.y - 1],
+            [this.x, this.y - 1],
             [this.x + 1, this.y - 1],
-            [this.x - 1, this.y ],
-            [this.x + 1, this.y ],
+            [this.x - 1, this.y],
+            [this.x + 1, this.y],
             [this.x - 1, this.y + 1],
-            [this.x , this.y + 1],
+            [this.x, this.y + 1],
             [this.x + 1, this.y + 1]
         ];
     }
-    chooseCell(char1,char2,char3){
+    chooseCell(char1, char2, char3) {
         let found = []
 
         for (let i in this.directions) {
@@ -31,10 +31,8 @@ class LivingCreature {
                 if (matrix[y][x] == char3) {
                     found.push(this.direction[i])
                 }
-           
             }
         }
         return found
-}
-
+    }
 }
