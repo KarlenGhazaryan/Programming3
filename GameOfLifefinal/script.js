@@ -1,12 +1,11 @@
+var socket = io();
 let side = 25
 
 function setup() {
-    frameRate(10)
-    createCanvas(matrix[0].length * side, matrix.length * side)
-    
+    createCanvas(40 * side, 40 * side)
 }
 
-function draw() {
+function drawGame(matrix) {
     for (let y = 0; y < matrix.length; y++) {
         for (let x = 0; x < matrix[y].length; x++) {
             if (matrix[y][x] == 1) {
@@ -25,32 +24,8 @@ function draw() {
             rect(x * side, y * side, side, side)
         }
     }
-
-
-    for (let i in grassArr) {
-        grassArr[i].mul()
-    }
-
-    for (let i in grassEaterArr) {
-        grassEaterArr[i].eat()
-    }
-    for (let i in predatorArr) {
-        predatorArr[i].eat()
-    }
-
-    for (let i in waterArr) {
-        waterArr[i].eat()
-
-        if(grassArr.length == 0){
-           waterArr[i].grassBreeder();
-        }
-    }
-    
-    for (let i in monsterArr){
-        monsterArr[i].eat();
-
-        if(waterArr.length == 0){
-            monsterArr[i].waterBreeder();
-        }
-    }
 }
+
+setInterval(function(){
+    socket.on("send matrix", drawGame)
+}, 500)

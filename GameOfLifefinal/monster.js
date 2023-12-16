@@ -1,4 +1,5 @@
 let LivingCreature = require("./LivingCreature")
+let Water = require("./water")
 
 module.exports = class Monster extends LivingCreature{
     constructor(x, y) {
@@ -39,7 +40,7 @@ module.exports = class Monster extends LivingCreature{
 
     eat() {
         let foods = this.chooseCell(1,2,3)
-        let food = random(foods)
+        let food = foods[Math.floor(Math.random() * foods.length)]
         if (food) {
             this.energy += 5
 
@@ -93,7 +94,7 @@ module.exports = class Monster extends LivingCreature{
 
     move() {
         let emptyCells = this.chooseCell(0)
-        let newCell = random(emptyCells)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if (newCell) {
             this.energy--
@@ -115,7 +116,7 @@ module.exports = class Monster extends LivingCreature{
 
     waterBreeder() {
         let emptyCells = this.chooseCell(0)
-        let newCell = random(emptyCells)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if(newCell){
             let newX = newCell[0]
