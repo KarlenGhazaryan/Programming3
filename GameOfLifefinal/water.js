@@ -1,5 +1,5 @@
 let LivingCreature = require("./LivingCreature")
-
+let Grass = require("./grass")
 module.exports = class Water extends LivingCreature{
     constructor(x, y) {
         super(x,y)
@@ -102,7 +102,7 @@ module.exports = class Water extends LivingCreature{
 
     grassBreeder() {
         let emptyCells = this.chooseCell(0)
-        let newCell = random(emptyCells)
+        let newCell = emptyCells[Math.floor(Math.random() * emptyCells.length)]
 
         if(newCell){
             let newX = newCell[0]

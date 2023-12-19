@@ -28,4 +28,10 @@ function drawGame(matrix) {
 
 setInterval(function(){
     socket.on("send matrix", drawGame)
-}, 500)
+}, 300);
+
+//buttons
+
+function AddGrass(){
+    socket.emit("AddGrass")
+}

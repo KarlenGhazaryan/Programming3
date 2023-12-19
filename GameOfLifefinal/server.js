@@ -152,8 +152,38 @@ function game(){
     io.sockets.emit("send matrix", matrix);
 }
 
-setInterval(game, 500)
+setInterval(game,300)
 
+//addbuttons
+
+function AddGrass(){
+    for(let i = 0; i < 7; i++){
+        let x = Math.floor(Math.random() * matrix.length)
+        let y = Math.floor(Math.random() * matrix.length)
+
+        if(matrix[y][x] == 0){
+            matrix[y][x] = 1
+            let grass = new Grass(x,y)
+           grassArr.push(grass)
+        }
+    }
+}
 io.on("connection", function(socket){
     createObject()
-})
+    socket.on("AddGrass", AddGrass)
+});
+
+var statistics = {
+
+}
+
+setInterval(function(){
+    statistics.grass = grassArr.length
+    statistics.grassEater = grassEaterArr.length
+    statistics.predator = predatorArr.length
+    statistics.monster = monsterArr.length
+    statistics.water = waterArr.length
+    fs.writeFile("statistics.json", JSON.stringify(statistics), function(err){
+        // console.log("Game of life Statistics");
+    })
+},1000);
