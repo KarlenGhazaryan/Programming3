@@ -211,7 +211,7 @@ function AddPredator(){
 function AddWater(){
     for(let i = 0; i < 7; i++){
         let x = Math.floor(Math.random() * matrix.length)
-        let y = Math.floor(Mah.random() * matrix.length)
+        let y = Math.floor(Math.random() * matrix.length)
 
         if(matrix[y][x] == 0){
             matrix[y][x] == 1
@@ -223,10 +223,7 @@ function AddWater(){
 
 ////
 
-io.on("connection", function(socket){
-    createObject()
-    socket.on("AddGrass", AddGrass)
-});
+
 
 var statistics = {
 
@@ -241,4 +238,40 @@ setInterval(function(){
     fs.writeFile("statistics.json", JSON.stringify(statistics), function(err){
         // console.log("Game of life Statistics");
     })
-},1000);
+},500);
+
+var weather;
+
+function Winter(){
+    weather = "Winter";
+    io.sockets.emit("Winter", weather)
+}
+
+function Summer(){
+    weather = "Summer"
+    io.sockets.emit("Summer", weather) 
+}
+
+function Spring(){
+    weather = "Spring"
+    io.sockets.emit("Spring", weather)
+}
+
+function Autumn(){
+    weather = "Autumn"
+    io.sockets.emit("Autumn", weather)
+}
+
+
+io.on("connection", function(socket){
+    createObject()
+    socket.on("AddGrass", AddGrass);
+    socket.on("AddGrassEater", AddGrassEater);
+    socket.on("AddMonster", AddMonster);
+    socket.on("AddPredator", AddPredator);
+    socket.on("AddWater", AddWater);
+    socket.on("Winter", Winter);
+    socket.on("Summer", Summer);
+    socket.on("Autumn", Autumn);
+    socket.on("Spring", Spring);
+});
