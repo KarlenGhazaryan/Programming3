@@ -168,6 +168,61 @@ function AddGrass(){
         }
     }
 }
+
+function AddGrassEater(){
+    for(let i = 0; i < 7; i++){
+        let x = Math.floor(Math.random() * matrix.length)
+        let y = Math.floor(Math.random() * matrix.length)
+
+        if(matrix[y][x] == 0){
+            matrix[y][x] == 1
+            let grassEater = new GrassEater(x,y)
+            grassEaterArr.push(grassEater)
+        }
+    }
+}
+
+function AddMonster(){
+    for(let i = 0; i < 7; i++){
+        let x = Math.floor(Math.random() * matrix.length)
+        let y = Math.floor(Math.random() * matrix.length)
+
+        if(matrix[y][x] == 0){
+            matrix[y][x] == 1
+            let monster = new Monster(x,y)
+            monsterArr.push(monster)
+        }
+    }
+}
+
+function AddPredator(){
+    for(let i = 0; i < 7; i++){
+        let x = Math.floor(Math.random() * matrix.length)
+        let y = Math.floor(Math.random() * matrix.length)
+
+        if(matrix[y][x] == 0){
+            matrix[y][x] == 1
+            let predator = new Predator(x,y)
+            predatorArr.push(predator)
+        }
+    }
+}
+
+function AddWater(){
+    for(let i = 0; i < 7; i++){
+        let x = Math.floor(Math.random() * matrix.length)
+        let y = Math.floor(Mah.random() * matrix.length)
+
+        if(matrix[y][x] == 0){
+            matrix[y][x] == 1
+            let water = new Water(x,y)
+            waterArr.push(water)
+        }
+    }
+}
+
+////
+
 io.on("connection", function(socket){
     createObject()
     socket.on("AddGrass", AddGrass)

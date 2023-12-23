@@ -35,3 +35,6 @@ setInterval(function(){
 function AddGrass(){
     socket.emit("AddGrass")
 }
+function AddGrassEater(){
+    socket.emit("AddGrassEater")
+}
